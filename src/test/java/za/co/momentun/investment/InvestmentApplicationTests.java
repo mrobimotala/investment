@@ -32,7 +32,6 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @RunWith(MockitoJUnitRunner.class)
 public class InvestmentApplicationTests {
 
@@ -47,14 +46,12 @@ public class InvestmentApplicationTests {
 	@Mock
 	AuditTrailRepository auditTrailRepository;
 
-
 	@InjectMocks
 	private InvestmentServiceImpl investmentService;
 
 	@Before
 	public void init() {
 		LocalDate birthday = LocalDate.of(1470, Month.JANUARY, 1);
-
 		Mockito.when(investorDetailsRepository.findById(Mockito.any()))
 				.thenReturn(Optional.of(buildInvestorDetails(birthday)));
 		Mockito.when(productRepository.findByType(Mockito.any()))
@@ -63,12 +60,9 @@ public class InvestmentApplicationTests {
 
 	@Test
 	public void validate_investor_age_for_withdrawal_retirement() {
-
 		LocalDate birthday = LocalDate.of(1994, Month.JANUARY, 1);
-
 		Mockito.when(investorDetailsRepository.findById(Mockito.any()))
 				.thenReturn(Optional.of(buildInvestorDetails(birthday)));
-
 		WithdrawalRequest request = new WithdrawalRequest();
 		request.setInvestorId(1L);
 		request.setWithdrawalAmount(20);
@@ -80,7 +74,6 @@ public class InvestmentApplicationTests {
 
 	@Test
 	public void validate_investor_95_for_withdrawal_retirement() {
-
 		LocalDate birthday = LocalDate.of(1994, Month.JANUARY, 1);
 
 		Mockito.when(investorDetailsRepository.findById(Mockito.any()))
@@ -88,7 +81,6 @@ public class InvestmentApplicationTests {
 
 		Mockito.when(productRepository.findByType(Mockito.any()))
 				.thenReturn(Optional.of(product(ProductType.SAVINGS)));
-
 		WithdrawalRequest request = new WithdrawalRequest();
 		request.setInvestorId(1L);
 		request.setWithdrawalAmount(35000);
@@ -100,7 +92,6 @@ public class InvestmentApplicationTests {
 
 	@Test
 	public void validate_investor_age_for_withdrawal_savings() {
-
 		LocalDate birthday = LocalDate.of(1994, Month.JANUARY, 1);
 
 		Mockito.when(investorDetailsRepository.findById(Mockito.any()))
@@ -117,10 +108,8 @@ public class InvestmentApplicationTests {
 
 	@Test
 	public void successful_withdrawal_retirement() {
-
 		Mockito.when(productRepository.findByType(Mockito.any()))
 				.thenReturn(Optional.of(product(ProductType.RETIREMENT)));
-
 		WithdrawalRequest request = new WithdrawalRequest();
 		request.setInvestorId(1L);
 		request.setWithdrawalAmount(20);
@@ -132,7 +121,6 @@ public class InvestmentApplicationTests {
 
 	@Test
 	public void successful_withdrawal_savings() {
-
 		WithdrawalRequest request = new WithdrawalRequest();
 		request.setInvestorId(1L);
 		request.setWithdrawalAmount(20);
@@ -140,12 +128,10 @@ public class InvestmentApplicationTests {
 		WithdrawalResponse withdrawalResponse = investmentService.withdrawal(request);
 		Assert.assertNotNull(withdrawalResponse);
 		assertThat(withdrawalResponse.getCurrentBalance()).isEqualTo(35980.0);
-
 	}
 
 	@Test
 	public void successfully_retrieve_investor_details() {
-
 		WithdrawalRequest request = new WithdrawalRequest();
 		request.setInvestorId(1L);
 		request.setWithdrawalAmount(20);
@@ -175,7 +161,6 @@ public class InvestmentApplicationTests {
 		productList.add(productSavings);
 		Mockito.when(productRepository.findAll())
 				.thenReturn(productList);
-
 		WithdrawalRequest request = new WithdrawalRequest();
 		request.setInvestorId(1L);
 		request.setWithdrawalAmount(20);
@@ -191,7 +176,6 @@ public class InvestmentApplicationTests {
 		productResponses.add(productResponse);
 
 		List<ProductResponse> investorProducts = investmentService.getInvestorProducts(productResponses.get(0).getId());
-
 		Assert.assertNotNull(investorProducts);
 		assertThat(investorProducts.get(0).getType()).isEqualTo("RETIREMENT");
 		assertThat(investorProducts.get(1).getType()).isEqualTo("SAVINGS");
@@ -211,13 +195,11 @@ public class InvestmentApplicationTests {
 		retirement.setBalance(500000d);
 		retirement.setId(1L);
 		retirement.setType("retirement");
-
 		Product savings = new Product();
 		savings.setInvestorDetails(details);
 		savings.setBalance(36000d);
 		savings.setId(2L);
 		savings.setType("savings");
-
 		return details;
 	}
 
@@ -231,7 +213,6 @@ public class InvestmentApplicationTests {
 
 	private Withdrawal withdrawal(){
 		Withdrawal withdrawal = new Withdrawal();
-
 		InvestorDetails investorDetails = new InvestorDetails();
 		investorDetails.setAddress("address");
 		investorDetails.setDateOfBirth(Date.valueOf("1870-01-01"));
@@ -239,32 +220,20 @@ public class InvestmentApplicationTests {
 		investorDetails.setEmailAddress("email");
 		investorDetails.setName("Joe");
 		investorDetails.setMobileNumber("011");
-
 		investorDetails.setProduct(Collections.singletonList(product(ProductType.SAVINGS)));
-
-
 		withdrawal.setInvestorDetails(investorDetails);
 		withdrawal.setStatus("Completed");
-
 		List<AuditTrail> auditTrailList = new ArrayList<>();
-
 		AuditTrail auditTrail = new AuditTrail();
 		auditTrail.setEvent("Withdrawal");
-
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
 		auditTrail.setTimestamp(timestamp);
 		auditTrail.setId(1L);
-
 		auditTrailList.add(auditTrail);
-
 		auditTrail.setWithdrawal(withdrawal);
-
 		withdrawal.setAuditTrails(auditTrailList);
 		withdrawal.setId(1L);
-
 		investorDetails.setWithdrawal(Collections.singleton(withdrawal));
-
 		return withdrawal;
 
 	}
