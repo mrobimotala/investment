@@ -21,8 +21,8 @@ public class AuditTrail {
     @Column(name = "event", nullable = false)
     private String event;
 
-    @ManyToOne
-    @JoinColumn(name="withdrawal_id", nullable=false)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name="withdrawal_id")
     private Withdrawal withdrawal;
 
     public Long getId() {

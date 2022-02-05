@@ -1,5 +1,4 @@
-
-    drop table if exists audit_trail CASCADE;
+  drop table if exists audit_trail CASCADE;
 
     drop table if exists investor_details CASCADE;
 
@@ -65,17 +64,3 @@
 
     INSERT INTO product VALUES(1, 36000, 'FLEX','SAVINGS', 1);
     INSERT INTO product VALUES(2, 500000, 'AR','RETIREMENT', 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-

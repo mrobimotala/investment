@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,7 +35,7 @@ public class InvestorDetails {
     private String emailAddress;
 
     @OneToMany(mappedBy="id")
-    private Set<Product> product;
+    private List<Product> product;
 
     @OneToMany(mappedBy="id")
     private Set<Withdrawal> withdrawal;
@@ -95,11 +96,11 @@ public class InvestorDetails {
         this.emailAddress = emailAddress;
     }
 
-    public Set<Product> getProduct() {
+    public List<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Set<Product> product) {
+    public void setProduct(List<Product> product) {
         this.product = product;
     }
 

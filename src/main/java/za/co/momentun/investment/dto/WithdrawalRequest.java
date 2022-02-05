@@ -1,33 +1,19 @@
 package za.co.momentun.investment.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import za.co.momentun.investment.state.ProductType;
 
+@Data
 public class WithdrawalRequest {
 
+    @ApiModelProperty(notes = "The id of the investor")
     private Long investorId;
-    private String productType;
+
+    @ApiModelProperty(notes = "The product type for withdrawal")
+    private ProductType productType;
+
+    @ApiModelProperty(notes = "The withdrawal amount")
     private double withdrawalAmount;
 
-    public Long getInvestorId() {
-        return investorId;
-    }
-
-    public void setInvestorId(Long investorId) {
-        this.investorId = investorId;
-    }
-
-    public String getProductType() {
-        return productType;
-    }
-
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-
-    public double getWithdrawalAmount() {
-        return withdrawalAmount;
-    }
-
-    public void setWithdrawalAmount(double withdrawalAmount) {
-        this.withdrawalAmount = withdrawalAmount;
-    }
 }

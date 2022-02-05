@@ -1,42 +1,21 @@
 package za.co.momentun.investment.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
+@Data
 public class WithdrawalResponse {
 
+    @ApiModelProperty(notes = "The id of the withdrawal")
     private Long id;
+
+    @ApiModelProperty(notes = "The withdrawal type")
     private String type;
+
+    @ApiModelProperty(notes = "The name of the withdrawal")
     private String name;
+
+    @ApiModelProperty(notes = "The current balance")
     private double currentBalance;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getCurrentBalance() {
-        return currentBalance;
-    }
-
-    public void setCurrentBalance(double currentBalance) {
-        this.currentBalance = currentBalance;
-    }
 }

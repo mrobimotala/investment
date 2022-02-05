@@ -1,7 +1,7 @@
 package za.co.momentun.investment.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "withdrawal")
@@ -22,7 +22,7 @@ public class Withdrawal {
     private InvestorDetails investorDetails;
 
     @OneToMany(mappedBy="id")
-    private Set<AuditTrail> auditTrails;
+    private List<AuditTrail> auditTrails;
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class Withdrawal {
         this.investorDetails = investorDetails;
     }
 
-    public Set<AuditTrail> getAuditTrails() {
+    public List<AuditTrail> getAuditTrails() {
         return auditTrails;
     }
 
-    public void setAuditTrails(Set<AuditTrail> auditTrails) {
+    public void setAuditTrails(List<AuditTrail> auditTrails) {
         this.auditTrails = auditTrails;
     }
 }

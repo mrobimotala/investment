@@ -1,71 +1,26 @@
 package za.co.momentun.investment.dto;
 
-import za.co.momentun.investment.model.Product;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
-
+@Data
 public class InvestorDetailsResponse {
-
+    @ApiModelProperty(notes = "The name of the investor")
     private String name;
+
+    @ApiModelProperty(notes = "The surname of the investor")
     private String surname;
+
+    @ApiModelProperty(notes = "The dateOfBirth of the investor")
     private String dateOfBirth;
+
+    @ApiModelProperty(notes = "The address of the investor")
     private String address;
+
+    @ApiModelProperty(notes = "The mobileNumber of the investor")
     private String mobileNumber;
+
+    @ApiModelProperty(notes = "The emailAddress of the investor")
     private String emailAddress;
-    private Product product;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }
